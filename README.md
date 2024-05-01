@@ -21,6 +21,7 @@ How to passthrough an AMD 4300U iGPU to Windows 10 on Proxmox
 Find your hardware info:
 > root@pve:~# lspci -nn | grep VGA
 05:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] Renoir [1002:1636] (rev c4)
+
 > root@pve:~# lspci -nns 05:00
 05:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] Renoir [1002:1636] (rev c4)
 05:00.1 Audio device [0403]: Advanced Micro Devices, Inc. [AMD/ATI] Renoir Radeon High Definition Audio Controller [1002:1637]
