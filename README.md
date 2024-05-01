@@ -24,8 +24,7 @@ Find your hardware info:
 05:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] Renoir [1002:1636] (rev c4)
 
 > root@pve:~# lspci -nns 05:00
-
-05:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] Renoir [1002:1636] (rev c4)<br>
+> 05:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] Renoir [1002:1636] (rev c4)<br>
 05:00.1 Audio device [0403]: Advanced Micro Devices, Inc. [AMD/ATI] Renoir Radeon High Definition Audio Controller [1002:1637]<br>
 05:00.2 Encryption controller [1080]: Advanced Micro Devices, Inc. [AMD] Family 17h (Models 10h-1fh) Platform Security Processor [1022:15df]<br>
 05:00.3 USB controller [0c03]: Advanced Micro Devices, Inc. [AMD] Renoir/Cezanne USB 3.1 [1022:1639]<br>
@@ -40,20 +39,20 @@ Find your hardware info:
 - Edit your modprobe config files
 	- blacklist.conf
 	> blacklist radeon<br>
-		blacklist amdgpu<br>
-		blacklist snd_hda_intel
+	blacklist amdgpu<br>
+	blacklist snd_hda_intel
 	- vfio.conf
-	> 	options vfio-pci ids=1002:1636,1002:1637,1022:15df,1022:1639,1022:15e2,1022:15e3 disable_vga=1<br>
-		softdep radeon pre: vfio-pci<br>
-		softdep amdgpu pre: vfio-pci<br>
-		softdep snd_hda_intel pre: vfio-pci
+	> options vfio-pci ids=1002:1636,1002:1637,1022:15df,1022:1639,1022:15e2,1022:15e3 disable_vga=1<br>
+	softdep radeon pre: vfio-pci<br>
+	softdep amdgpu pre: vfio-pci<br>
+	softdep snd_hda_intel pre: vfio-pci
 
 After all configurations we need to update module and grub
 > update-initramfs -u -k all ; update-grub
 
 Forward PCI device to VM, here is my VM config file
 
-agent: 1<br>
+> agent: 1<br>
 args: -cpu 'host,-hypervisor,kvm=off'<br>
 balloon: 8192<br>
 bios: ovmf<br>
