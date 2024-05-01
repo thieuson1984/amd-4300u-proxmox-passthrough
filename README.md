@@ -21,18 +21,7 @@ How to passthrough an AMD 4300U iGPU to Windows 10 on Proxmox
 Find your hardware info:
 > root@pve:~# lspci -nn | grep VGA
 05:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] Renoir [1002:1636] (rev c4)
-> root@pve:/etc/modprobe.d# lspci -nns 05:00
-05:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] Renoir [1002:1636] (rev c4)
-05:00.1 Audio device [0403]: Advanced Micro Devices, Inc. [AMD/ATI] Renoir Radeon High Definition Audio Controller [1002:1637]
-05:00.2 Encryption controller [1080]: Advanced Micro Devices, Inc. [AMD] Family 17h (Models 10h-1fh) Platform Security Processor [1022:15df]
-05:00.3 USB controller [0c03]: Advanced Micro Devices, Inc. [AMD] Renoir/Cezanne USB 3.1 [1022:1639]
-05:00.4 USB controller [0c03]: Advanced Micro Devices, Inc. [AMD] Renoir/Cezanne USB 3.1 [1022:1639]
-05:00.5 Multimedia controller [0480]: Advanced Micro Devices, Inc. [AMD] ACP/ACP3X/ACP6x Audio Coprocessor [1022:15e2] (rev 01)
-05:00.6 Audio device [0403]: Advanced Micro Devices, Inc. [AMD] Family 17h/19h HD Audio Controller [1022:15e3]
-root@pve:/etc/modprobe.d# cd ~
-root@pve:~# lspci -nn | grep VGA
-05:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] Renoir [1002:1636] (rev c4)
-root@pve:~# lspci -nns 05:00
+> root@pve:~# lspci -nns 05:00
 05:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] Renoir [1002:1636] (rev c4)
 05:00.1 Audio device [0403]: Advanced Micro Devices, Inc. [AMD/ATI] Renoir Radeon High Definition Audio Controller [1002:1637]
 05:00.2 Encryption controller [1080]: Advanced Micro Devices, Inc. [AMD] Family 17h (Models 10h-1fh) Platform Security Processor [1022:15df]
@@ -45,7 +34,7 @@ root@pve:~# lspci -nns 05:00
 - Edit line "" in proxmox host grub file at "/etc/defaults/grub":
 > GRUB_CMDLINE_LINUX_DEFAULT="amd-pstate=passive quiet video=efifb:off initcall_blacklist=sysfb_init textonly iommu=pt pcie_acs_override=downstream,multifunction"
 
-- Edit your modprob config files
+- Edit your modprobe config files
 	- blacklist.conf
 	> blacklist radeon
 		blacklist amdgpu
