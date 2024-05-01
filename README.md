@@ -23,13 +23,13 @@ Find your hardware info:
 05:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] Renoir [1002:1636] (rev c4)
 
 > root@pve:~# lspci -nns 05:00
-05:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] Renoir [1002:1636] (rev c4)
+> ``05:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] Renoir [1002:1636] (rev c4)
 05:00.1 Audio device [0403]: Advanced Micro Devices, Inc. [AMD/ATI] Renoir Radeon High Definition Audio Controller [1002:1637]
 05:00.2 Encryption controller [1080]: Advanced Micro Devices, Inc. [AMD] Family 17h (Models 10h-1fh) Platform Security Processor [1022:15df]
 05:00.3 USB controller [0c03]: Advanced Micro Devices, Inc. [AMD] Renoir/Cezanne USB 3.1 [1022:1639]
 05:00.4 USB controller [0c03]: Advanced Micro Devices, Inc. [AMD] Renoir/Cezanne USB 3.1 [1022:1639]
 05:00.5 Multimedia controller [0480]: Advanced Micro Devices, Inc. [AMD] ACP/ACP3X/ACP6x Audio Coprocessor [1022:15e2] (rev 01)
-05:00.6 Audio device [0403]: Advanced Micro Devices, Inc. [AMD] Family 17h/19h HD Audio Controller [1022:15e3]
+05:00.6 Audio device [0403]: Advanced Micro Devices, Inc. [AMD] Family 17h/19h HD Audio Controller [1022:15e3]``
 
 - Copy bios files [Renoir_Generic_VBIOS_updGOP.bin, AMDGopDriver.rom]to your proxmox host folder "/usr/share/kvm/"
 - Edit line "" in proxmox host grub file at "/etc/defaults/grub":
@@ -50,7 +50,7 @@ After all configurations we need to update module and grub
 > update-initramfs -u -k all ; update-grub
 
 Forward PCI device to VM, here is my VM config file
-> agent: 1
+> ``agent: 1
 args: -cpu 'host,-hypervisor,kvm=off'
 balloon: 8192
 bios: ovmf
@@ -75,4 +75,4 @@ smbios1: uuid=f0361f56-75ca-4c07-ab86-d0d64d5d6bab
 sockets: 1
 tpmstate0: local-lvm:vm-100-disk-2,size=4M,version=v2.0
 vga: none
-vmgenid: af021217-86b5-4e49-a2a2-9bedf6511e3f
+vmgenid: af021217-86b5-4e49-a2a2-9bedf6511e3f``
